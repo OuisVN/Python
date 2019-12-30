@@ -1,0 +1,93 @@
+.titulo{
+	background-color: #3C384F;
+	color: #FFFFFF;
+	font-size: 18px;
+	padding: 10px;
+}
+
+.contenido{
+	background-color: #FFFFFF;
+	border: solid 1px #FFFFFF;
+	border-bottom: 3px solid #3C384F;
+	margin-bottom: 10px;
+	overflow: hidden;
+	padding: 20px;
+}
+
+.contenidoIndex{
+	border: solid 1px #FFFFFF;
+	background-color: #FFFFFF;
+	overflow: hidden;
+}
+
+.contenidoIndex.gris{
+	padding: 10px;
+	background-color: #BBBBBB;
+	border-bottom: 3px solid #3C384F;
+}
+
+.colorMorado{
+	background-color: #3C384F;
+	color: #FFFFFF;
+}
+
+.menu{
+	background-color: #3C384F;
+	color: #FFFFFF;
+	font-size: 13px!important;
+}
+
+.expandirDiv{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.expandirLados{
+	padding: 10px;
+}
+
+.imagen{
+	border: solid 1px #000000;
+}
+
+.requerido{
+	border-bottom: 2px solid red;
+}
+
+.sombra{
+	-webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.footer{
+	background-color: #212529;
+	padding: 20px;
+}
+
+/* Funciones Extra */
+
+.zoom{ transition: transform .2s; }
+.zoom:hover{ transform: scale(1.2); }
+.blanco{ color: #FFFFFF; }
+.blanco:hover{ color: #FFFFFF; }
+.negro{ color: #000000; }
+.negro:hover{ color: #000000; }
+.verde{ color: green; }
+.rojo{ color: red; }
+
+/* Tamano Texto */
+
+.tamano_09{ font-size: 09px!important; }
+.tamano_10{ font-size: 10px!important; }
+.tamano_11{ font-size: 11px!important; }
+.tamano_12{ font-size: 12px!important; }
+
+/* Bootstrap Error */
+
+.breadcrumb{ background-color: #F4F4F4!important; }
+.dataTables_wrapper .myfilter .dataTables_filter{ float: left; }
+.dataTables_wrapper .mylength .dataTables_length{ float: right; }
+.tooltip-inner{
+	white-space: nowrap!important;
+	max-width: none!important;
+}

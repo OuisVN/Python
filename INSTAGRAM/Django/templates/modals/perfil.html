@@ -1,0 +1,66 @@
+					<div class="modal fade" id="subir" tabindex="-1" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<form action="{% url 'perfil_subir' %}" method="POST" enctype="multipart/form-data">
+									{% csrf_token %}
+									<div class="modal-header">
+										<h5 class="modal-title">SUBIR PUBLICACI&Oacute;N</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="text-center">
+											<div class="despegar">
+												<select name="tipo" class="form-control form-control-sm" required>
+													<option value="1">Publicaci&oacute;n</option>
+													<option value="2">Historia</option>
+												</select>
+											</div>
+											<div class="despegar">
+												<input type="file" class="form-control form-control-sm" name="imagen" required>
+											</div>
+											<div class="despegar">
+												<input type="text" class="form-control form-control-sm" name="mensaje" placeholder="Mensaje...">
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<input type="submit" class="btn morado" value="SUBIR">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">REGRESAR</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="editar" tabindex="-1" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<form action="{% url 'perfil_editar' %}" method="POST" enctype="multipart/form-data">
+									{% csrf_token %}
+									<div class="modal-header">
+										<h5 class="modal-title">EDITAR PERFIL</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="text-center">
+											{% for dato in datos %}
+												<div class="despegar">
+													<input type="file" class="form-control form-control-sm" name="imagen_perfil" required>
+												</div>
+												<div class="despegar">
+													<input type="text" class="form-control form-control-sm" name="nombre_completo" value="{{ dato.nombre_completo }}" required>
+												</div>
+											{% endfor %}
+										</div>
+									</div>
+									<div class="modal-footer">
+										<input type="submit" class="btn morado" value="EDITAR">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">REGRESAR</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>

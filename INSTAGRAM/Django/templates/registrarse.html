@@ -1,0 +1,46 @@
+{% load static %}
+{% include "includes/header.html" %}
+		
+		<br><br>
+		<div class="row centrar">
+			<div class="col-md-8 offset-md-2">
+				<div class="jumbotron">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-5">
+							<img src="{% static 'images/index/instagram.png' %}" width="256" height="auto">
+						</div>
+						<div class="col-md-5">
+							<br>
+							<div class="container">
+								{% if error %} <p class="alert alert-danger" style="font-size: 12px;">{{ error }}</p> {% endif%}
+								<form action="{% url 'registrarse' %}" method="POST">
+									{% csrf_token %}
+									<div class="despegar">
+										<input type="text" class="form-control form-control-sm" name="usuario" placeholder="Usuario" required>
+									</div>
+									<div class="despegar">
+										<input type="text" class="form-control form-control-sm" name="correo" placeholder="Correo electrónico" required>
+									</div>
+									<div class="despegar">
+										<input type="text" class="form-control form-control-sm" name="nombre" placeholder="Nombre completo" required>
+									</div>
+									<div class="despegar">
+										<input type="password" class="form-control form-control-sm" name="contrasena" placeholder="Contraseña" required>
+									</div>
+									<input type="submit" class="btn btn-sm col-md-12 morado" value="Registrarse">
+								</form>
+							</div>
+							<hr>
+							<div class="container">
+								<small>&iquest;Tienes una cuenta?</small>
+								<a href="/">Inicia sesi&oacute;n</a>
+							</div>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		{% include "includes/footer.html" %}

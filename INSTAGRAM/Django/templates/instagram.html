@@ -1,0 +1,141 @@
+{% load static %}
+{% include "includes/header.html" %}
+		{% include "includes/menu.html" %}
+		
+		<br><br>
+		<script type="text/javascript" src="{% static 'js/instagram.js' %}"></script>
+		<div class="row centrar">
+			<div class="col-md-8 offset-md-2">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						{% for historia in historias %}
+							<a href="#" class="imagen" data-toggle="modal" data-target="#imagen" data-perfil="{{ historia.usuario.imagen_perfil }}" data-imagen="{{ historia.imagen }}" data-mensaje="{{ historia.mensaje }}" data-nombre="{{ historia.usuario.nombre_completo }}">
+								<img src="{{ historia.imagen }}" width="64" height="64" style="border-radius: 50%; object-fit: cover;">
+							</a>
+						{% endfor %}
+						<br><br><hr><br>
+					</div>
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<div class="container">
+							{% for noticia in noticias %}
+									<div class="card">
+										<div class="font-weight-bold" style="font-size: 14px; padding: 15px;">
+											<form action="{% url 'perfil' %}" method="POST">
+												{% csrf_token %}
+												
+												{% if noticia.usuario.imagen_perfil %}
+													<img src="{{ noticia.usuario.imagen_perfil }}" width="32" height="32" style="border-radius: 50%; object-fit: cover;">
+												{% else %}
+													<img src="{% static 'images/index/instagram.png' %}" width="32" height="32" style="border-radius: 50%; object-fit: cover;">
+												{% endif %}
+												
+												<input type="hidden" name="buscar" value="{{ noticia.usuario.usuario }}">
+												<button type="submit" name="id" class="boton_perfil">{{ noticia.usuario.nombre_completo }}</button>
+											</form>
+										</div>
+										<img class="zoom card-img-top" src="{{ noticia.imagen }}" width="614" height="auto">
+										<div class="card-body" style="margin-top: -10px;">
+											<span>{{ noticia.mensaje }}</span><br>
+											<div style="padding-top: 5px;">
+												<span>
+													<a href="{% url 'me_gusta' id=noticia.id %}">
+														<i class="far fa-heart" style="font-size: 1.5rem;
+														{% for arr in arreglo %}
+															{% if noticia.id == arr.0 %}
+																{% if request.session.usuario == arr.1 %}
+																	{{ arr.3 }}
+																{% endif %}
+															{% endif %}
+														{% endfor %}
+														"></i>
+													</a>
+												</span>
+												<span style="padding-left: 5px;">
+													<button id="comentario{{ noticia.id }}" class="boton_perfil">
+														<i class="far fa-comment-alt" style="font-size: 1.4rem;"></i>
+													</button>
+													<script>
+														$(document).on("click", "#comentario{{ noticia.id }}", function(e){
+															$(".comentario{{ noticia.id }}").filter(':visible').focus();
+														});
+													</script>
+												</span>
+												<span class="float-right">
+													<a href="{% url 'guardar' id=noticia.id %}">
+														<i class="far fa-bookmark" style="font-size: 1.5rem;
+														{% for guard in guardado %}
+															{% if noticia.id == guard.0 %}
+																{% if request.session.usuario == guard.1 %}
+																	{{ guard.2 }}
+																{% endif %}
+															{% endif %}
+														{% endfor %}
+														"></i>
+													</a>
+												</span>
+											</div>
+											<span style="font-size: 13px;">
+												{% for msj in mensaje %}
+													{% if noticia.id == msj.0 %}
+														<b>{{msj.1}}</b>
+													{% endif %}
+												{% endfor %}
+												{% for arr in arreglo %}
+													{% if noticia.id == arr.0 %}
+														{{ arr.2 }}
+													{% endif %}
+												{% endfor %}
+											</span>
+											<hr>
+											<span style="font-size: 12px;">
+												{% for cmt in comentarios %}
+													{% if noticia.id == cmt.0 %}
+														<form action="{% url 'borrar_comentarios' %}" method="POST">
+															{% csrf_token %}
+															<input type="hidden" name="comentario_id" value="{{ cmt.4 }}">
+															<b>{{ cmt.2 }}: </b>{{ cmt.3 }}
+															{% if noticia.usuario.usuario == request.session.usuario %}
+																<button type="submit" class="btn btn-sm btn-danger float-right" style="font-size: 5px;">-</button>
+															{% endif %}
+															<br>
+														</form>
+													{% endif %}
+												{% endfor %}
+											</span>
+											<br>
+											<form action="{% url 'comentarios' %}" method="POST">
+												{% csrf_token %}
+												<input type="hidden" name="publicacion" value="{{ noticia.id }}">
+												<input type="text" name="comentario" class="form-control form-control-sm comentario{{ noticia.id }}" style="height: 40px; font-size: 10px;" placeholder="Dejar un comentario...">
+											</form>
+											
+											<span style="font-size: 11px;">{{ noticia.fecha_creacion }}</span>
+										</div>
+									</div><br>
+							{% endfor %}
+							
+							{% if usuarios == 0 and usuario_propio == 0 %}
+							
+								<div class="card text-center">
+									<div class="card-body" style="margin-top: -10px;">
+										<span class="font-italic">
+											¡Bienvenido!<br>
+											Empieza a seguir personas para llenar tu muro de noticias.
+										</span>
+									</div>
+									<img class="card-img-top" src="{% static 'images/index/bienvenido.png' %}" width="614" height="auto">
+								</div>
+								
+							{% endif %}
+						</div>
+					</div>
+					<div class="col-md-2"></div>
+					
+					{% include "modals/instagram.html" %}
+					
+				</div>
+			</div>
+		</div>
+		
+		{% include "includes/footer.html" %}

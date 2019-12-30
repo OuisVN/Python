@@ -1,0 +1,61 @@
+html{
+    width: 100%;
+	overflow-x: hidden;
+}
+
+html, body{
+	height:100%;
+	margin: 0;
+	padding: 0;
+}
+
+hr {
+	margin: 8px 0 8px 0;
+}
+
+a{
+	text-decoration:none!important;
+	color: #000000;
+}
+
+@font-face{
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: local('Poppins Regular'), local('Poppins-Regular'), url(../fonts/Poppins.woff2) format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.fuente{
+	font-family: 'Poppins', sans-serif!important;
+}
+
+.centrar{
+  margin: auto;
+  padding: 10px;
+}
+
+.sombra{
+	-webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.boton_perfil{
+	background: none!important;
+	border: none;
+	padding: 0!important;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+/* Funciones Extra */
+
+.morado{
+	background-color: #561750;
+	color: #FECBCC;
+}
+
+.despegar{ padding-bottom: 5px; }
+.zoom{transition: transform .2s; }
+.zoom:hover{ transform: scale(1.1); }

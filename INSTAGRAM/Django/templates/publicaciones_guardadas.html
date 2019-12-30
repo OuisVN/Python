@@ -1,0 +1,60 @@
+{% load static %}
+{% include "includes/header.html" %}
+		{% include "includes/menu.html" %}
+		
+		<br><br>
+		<div class="row centrar">
+			<div class="col-md-10 offset-md-1">
+				<div class="row">
+					<div class="col-md-10 offset-md-1">
+						<div class="row">
+							{% for dato in datos %}
+								<div class="col-md-4">
+									<div class="font-weight-bold" style="font-size: 14px; padding: 15px;">
+										<div class="profile-image">
+											{% if dato.imagen_perfil %}
+												<img src="{{ dato.imagen_perfil }}" width="150" height="150" style="object-fit: cover;  border-radius: 50%;">
+											{% else %}
+												<img src="{% static 'images/index/instagram.png' %}" width="150" height="150" style="object-fit: cover;  border-radius: 50%;">
+											{% endif %}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<br>
+									<span class="font-weight-bold" style="font-size: 20px;">
+										{{ dato.usuario }}
+										<br>
+									</span>
+									<span style="font-size: 16px;">
+										<b>{{ publicaciones }}</b>
+										{% if publicaciones == 1 %} Publicaci&oacute;n {% else %} Publicaciones {% endif %} |
+										<b>{{ seguidores }}</b>
+										{% if seguidores == 1 %} Seguidor {% else %} Seguidores {% endif %} |
+										<b>{{ seguidos }}</b>
+										{% if seguidos == 1 %} Seguido {% else %} Seguidos {% endif %}
+										
+										<br><br>
+										<b>{{ dato.nombre_completo }}</b>
+									</span>
+								</div>
+							{% endfor %}
+						</div>
+						<hr>
+					</div>
+					<div class="col-md-12">
+						<div class="row">
+							{% for noticia in noticias %}
+								<div class="col-md-4" style="padding: 10px;">
+									<div class="card">
+										<img class="card-img-top" src="{{ noticia.publicacion.imagen }}" width="293" height="293" style="object-fit: cover;">
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		{% include "includes/footer.html" %}
